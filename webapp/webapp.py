@@ -1,6 +1,9 @@
 from flask import Flask, render_template
 from flask_pymongo import PyMongo
+from flask import make_response
 from pymongo import MongoClient
+import pdfkit
+
 app = Flask(__name__)
 
 #Moving to the cloud database
@@ -26,8 +29,16 @@ def vulnerabilities():
     return render_template('vulnerabilities.html')
 
 @app.route('/report')
-def report():
-    return render_template('report.html')
+def index():
+    name = "Nuc-Gui"
+    html = render_template(
+        "report_template.html",
+        name=name)
+    pdf = pdfkit.from_string(html, False)
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=report.pdf"
+    return response
 
 if __name__ == '__main__':
    app.run(debug=True)
