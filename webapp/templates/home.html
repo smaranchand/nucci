@@ -1,0 +1,20 @@
+<html>
+<!--
+    This is an index page developed by Smaran.
+-->
+    <title>
+        JamX
+    </title>
+    <body>
+        {% for vulndetails in vulns %}
+        {{vulndetails.severity}}
+        {{vulndetails.endpoint}}
+        {{vulndetails.scope}}
+        {{vulndetails.vulnerability}}
+        {% endfor %}
+        <H1>
+            This is a sample Test for rendering the dashboard.
+        </H1>
+    </body>
+</body>
+</html>

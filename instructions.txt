@@ -1,0 +1,3 @@
+Please add alias to use nuc-gui to .bash_profile/.zshrc
+nuc-gui="python /Users/smaranchand/nuc-gui/read.py"
+So that we can use nuclei -t ~/nuclei-templates|nuc-gui
