@@ -1,0 +1,1 @@
+[2021-05-27 10:03:01] [open-redirect] [http] [low] https://edu.kickex.com//example.com/%2F..
