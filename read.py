@@ -1,8 +1,16 @@
 #!/usr/bin/python3
+from contextlib import nullcontext
 import re
 import sys
 #from turtle import done
 import pymongo
+print('''
+███    ██ ██    ██  ██████        ██████  ██    ██ ██
+████   ██ ██    ██ ██            ██       ██    ██ ██
+██ ██  ██ ██    ██ ██      █████ ██   ███ ██    ██ ██
+██  ██ ██ ██    ██ ██            ██    ██ ██    ██ ██
+██   ████  ██████   ██████        ██████   ██████  ██
+''')
 myclient = pymongo.MongoClient('mongodb+srv://root:localhost123@nuc-gui-db.zolos.mongodb.net/scanresults?retryWrites=true&w=majority')
 rawdata = sys.stdin.read()
 regexmatch = re.compile(r'\x1b[^m]*m')
@@ -20,4 +28,4 @@ for data in new.splitlines():
     mycol = mydb["nuclei_results"]
     data = { "date":""+date , "time":""+time , "vulnerability":""+vulnerability , "scope":""+scope , "severity":""+severity , "endpoint":""+endpoint }
     x = mycol.insert_one(data)
-    print("Results migrated to database.")
+    print("[+] Results migrated to database.[+]")
