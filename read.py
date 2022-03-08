@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-from contextlib import nullcontext
+#from contextlib import nullcontext
 import re
 import sys
 import select
-import sys
 #from turtle import done
 import pymongo
 print('''
@@ -13,7 +12,7 @@ print('''
 ██  ██ ██ ██    ██ ██            ██    ██ ██    ██ ██
 ██   ████  ██████   ██████        ██████   ██████  ██
 
-Powered by Daal Bhaat
+Developed by:
 ''')
 
 if select.select([sys.stdin, ], [], [], 0.0)[0]:
