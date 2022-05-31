@@ -1,3 +1,2 @@
-# nuc-gui
-Nuclei report generator
-Contact @smaranchand in case of any problems.
+# nuci
+Save your Nuclei scan results to cloud.

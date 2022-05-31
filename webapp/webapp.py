@@ -26,7 +26,8 @@ def connect():
 
 @app.route('/vulnerabilities')
 def vulnerabilities():
-    return render_template('vulnerabilities.html')
+    vulnsraw=mongo.db.nuclei_results.find()
+    return render_template('vulnerabilities.html',vulns=vulnsraw)
 
 @app.route('/report')
 def index():
