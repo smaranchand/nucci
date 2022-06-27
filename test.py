@@ -37,12 +37,12 @@ if select.select([sys.stdin,], [], [], 0.0)[0]:
         scope = (arr[3])
         severity = (arr[4])
         endpoint = (arr[5])
-        myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
-        print(myclient)
-        mydb = pymongo.MongoClient(config_data['Config']['DATABASE_NAME'])
+        myclient = pymongo.MongoClient('mongodb+srv://root:localhost123@nuc-gui-db.zolos.mongodb.net')
+        mydb = myclient['scanresults']
         mycol = mydb["nuclei_results"]
-        data = {"date": "" + date, "time": "" + time, "vulnerability": "" + vulnerability, "scope": "" + scope,"severity": "" + severity, "endpoint": "" + endpoint}
+        data = {"date": "" + date, "time": "" + time, "vulnerability": "" + vulnerability,"scope": "" + scope,"severity": "" + severity, "endpoint": "" + endpoint}
         x = mycol.insert_one(data)
         print("[+] Results migrated to database.[+]")
 else:
     print("No output data detected.")
+
