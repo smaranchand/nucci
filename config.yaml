@@ -1,3 +1,3 @@
 Config:
-  MONGO_URI: mongodb+srv://root:localhost123@nuc-gui-db.zolos.mongodb.net
+  MONGO_URI: mongodb+srv://root:localhost123@nuc-gui-db.zolos.mongodb.net/scanresults
   DATABASE_NAME: scanresults
