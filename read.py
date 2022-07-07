@@ -1,17 +1,10 @@
 #!/usr/bin/python3
-# from contextlib import nullcontext
 import argparse
 import os
 import re
-
-import flask
-import select
 import sys
-
-# from turtle import done
 import pymongo
-from flask import app
-from pymongo import MongoClient
+import select
 import yaml
 
 print('''
@@ -29,7 +22,6 @@ try:
     with open("config.yaml", "r") as yamlfile:
         config_data = yaml.load(yamlfile, Loader=yaml.FullLoader)
     myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
-    print(myclient)
 except Exception as e:
     print(e)
 parser = argparse.ArgumentParser()
@@ -46,7 +38,6 @@ if args.config:
 
     with open("config.yaml", 'w') as yamlfile:
         data1 = yaml.dump(data, yamlfile)
-        print(data)
         print("Configuration saved successfully")
         yamlfile.close()
 elif args.webserver:
