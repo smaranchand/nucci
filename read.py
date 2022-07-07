@@ -29,6 +29,7 @@ try:
     with open("config.yaml", "r") as yamlfile:
         config_data = yaml.load(yamlfile, Loader=yaml.FullLoader)
     myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
+    print(myclient)
 except Exception as e:
     print(e)
 parser = argparse.ArgumentParser()
@@ -65,7 +66,7 @@ elif select.select([sys.stdin, ], [], [], 0.0)[0]:
         scope = (arr[3])
         severity = (arr[4])
         endpoint = (arr[5])
-        mydb = pymongo.MongoClient(config_data['Config']['DATABASE_NAME'])
+        mydb = myclient["scanresults"]
         mycol = mydb["nuclei_results"]
         data = {"date": "" + date, "time": "" + time, "vulnerability": "" + vulnerability, "scope": "" + scope,
                 "severity": "" + severity, "endpoint": "" + endpoint}
