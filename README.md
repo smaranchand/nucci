@@ -1,4 +1,4 @@
-![Nucci](https://github.com/smaranchand/nucci/raw/main/nucci.gif)
+![Nucci](https://github.com/smaranchand/nucci/raw/main/src/nucci.gif)
 
 #RIP Internet Hero Binit Ghimire.
 
