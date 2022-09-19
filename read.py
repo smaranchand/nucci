@@ -9,14 +9,13 @@ import yaml
 
 print('''
 
+███    ██    ██    ██     ██████     ██████    ██
+████   ██    ██    ██    ██         ██         ██
+██ ██  ██    ██    ██    ██         ██         ██
+██  ██ ██    ██    ██    ██         ██         ██
+██   ████     ██████      ██████     ██████    ██
 
-███    ██    ██    ██     ██████     ██████    ██ 
-████   ██    ██    ██    ██         ██         ██ 
-██ ██  ██    ██    ██    ██         ██         ██ 
-██  ██ ██    ██    ██    ██         ██         ██ 
-██   ████     ██████      ██████     ██████    ██                                                   
-
-Developed by: Smaran & Yunish
+Developed by: @smaranchand & @yunishshrestha2
 ''')
 try:
     with open("config.yaml", "r") as yamlfile:
