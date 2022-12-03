@@ -8,14 +8,13 @@ import select
 import yaml
 
 print('''
-
 ███    ██    ██    ██     ██████     ██████    ██
 ████   ██    ██    ██    ██         ██         ██
 ██ ██  ██    ██    ██    ██         ██         ██
 ██  ██ ██    ██    ██    ██         ██         ██
 ██   ████     ██████      ██████     ██████    ██
 
-Developed by: @smaranchand & @yunishshrestha2
+Developed by:@smaranchand & Yunish
 ''')
 try:
     with open("config.yaml", "r") as yamlfile:
