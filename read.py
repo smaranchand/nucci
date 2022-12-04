@@ -16,50 +16,62 @@ print('''
 
 Developed by:@smaranchand & Yunish
 ''')
-try:
-    with open("config.yaml", "r") as yamlfile:
-        config_data = yaml.load(yamlfile, Loader=yaml.FullLoader)
-    myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
-except Exception as e:
-    print(e)
-parser = argparse.ArgumentParser()
-parser.add_argument("-web", dest="webserver", help="Type -web run")
-parser.add_argument("-config", dest="config", help="Type -config run")
+def read_config_file():
+    try:
+        with open("config.yaml", "r") as yamlfile:
+            config_data = yaml.load(yamlfile, Loader=yaml.FullLoader)
+        return config_data
+    except Exception as e:
+        print(e)
 
-args = parser.parse_args()
-if args.config:
-    with open("config.yaml", "r") as yamlfile:
-        data = yaml.load(yamlfile, Loader=yaml.FullLoader)
-        data['Config']['MONGO_URI'] = input('Enter Mongo URI: ')
-        data['Config']['DATABASE_NAME'] = input('Enter Database Name: ')
-        yamlfile.close()
+def write_config_file(data):
+    try:
+        with open("config.yaml", 'w') as yamlfile:
+            data1 = yaml.dump(data, yamlfile)
+            print("Configuration saved successfully")
+            yamlfile.close()
+    except Exception as e:
+        print(e)
 
-    with open("config.yaml", 'w') as yamlfile:
-        data1 = yaml.dump(data, yamlfile)
-        print("Configuration saved successfully")
-        yamlfile.close()
-elif args.webserver:
-    os.system("cd webapp && python3 webapp.py")
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', help='Add MongoDB configuration', action='store_true')
+    parser.add_argument('--webserver', help='Start the web server', action='store_true')
+    args = parser.parse_args()
+    return args
 
-elif select.select([sys.stdin, ], [], [], 0.0)[0]:
-
-    rawdata = sys.stdin.read()
-    regexmatch = re.compile(r'\x1b[^m]*m')
-    results = regexmatch.sub('', rawdata)
-    new = (results.translate(results.maketrans({'[': '', ']': ''})))
-    for data in new.splitlines():
-        arr = data.split()
-        date = (arr[0])
-        time = (arr[1])
-        vulnerability = (arr[2])
-        scope = (arr[3])
-        severity = (arr[4])
-        endpoint = (arr[5])
-        mydb = myclient["scanresults"]
+def main():
+    args = parse_arguments()
+    if args.config:
+        config_data = read_config_file()
+        config_data['Config']['MONGO_URI'] = input('Enter Mongo URI: ')
+        config_data['Config']['DATABASE_NAME'] = input('Enter Database Name: ')
+        write_config_file(config_data)
+    elif args.webserver:
+        os.system("cd webapp && python3 webapp.py")
+    elif select.select([sys.stdin, ], [], [], 0.0)[0]:
+        config_data = read_config_file()
+        myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
+        mydb = myclient[config_data['Config']['DATABASE_NAME']]
         mycol = mydb["nuclei_results"]
-        data = {"date": "" + date, "time": "" + time, "vulnerability": "" + vulnerability, "scope": "" + scope,
-                "severity": "" + severity, "endpoint": "" + endpoint}
-        x = mycol.insert_one(data)
-        print("[+] Results migrated to database.[+]")
-else:
-    print("No output data detected.")
+        rawdata = sys.stdin.read()
+        regexmatch = re.compile(r'\x1b[^m]*m')
+        results = regexmatch.sub('', rawdata)
+        new = (results.translate(results.maketrans({'[': '', ']': ''})))
+        for data in new.splitlines():
+            arr = data.split()
+            date = (arr[0])
+            time = (arr[1])
+            vulnerability = (arr[2])
+            scope = (arr[3])
+            severity = (arr[4])
+            endpoint = (arr[5])
+            data = {"date": "" + date, "time": "" + time, "vulnerability": "" + vulnerability, "scope": "" + scope,
+                    "severity": "" + severity, "endpoint": "" + endpoint}
+            x = mycol.insert_one(data)
+            print("[+] Results migrated to database.[+]")
+    else:
+        print("No output data detected.")
+
+if __name__ == '__main__':
+    main()
