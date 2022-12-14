@@ -6,6 +6,7 @@ import select
 import sys
 import pymongo
 import yaml
+
 print('''
 ███    ██    ██    ██     ██████     ██████    ██
 ████   ██    ██    ██    ██         ██         ██
@@ -28,14 +29,13 @@ def read_config_file():
         myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
         return config_data
     except Exception as e:
-        return (e)  # Return an empty dictionary instead of None
+        return (e)
 def write_config_file(data):
     try:
         with open(file_path, 'w') as yamlfile:
             data1 = yaml.dump(data, yamlfile)
             print("Configuration saved successfully")
     except Exception as e:
-        # Handle the exception here
         print(f"An error occurred while saving the configuration: {e}")
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -47,7 +47,8 @@ def main():
     args = parse_arguments()
     if args.config:
         config_data = read_config_file()
-        config_data.get('Config', {})['MONGO_URI'] = input('Enter Mongo URI: ')
+        config_data ={}
+        config_data.setdefault('Config', {})['MONGO_URI'] = input('Enter Mongo URI: ')
         config_data.get('Config', {})['DATABASE_NAME'] = input('Enter Database Name: ')
         write_config_file(config_data)
     elif args.webserver:
