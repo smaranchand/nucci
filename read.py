@@ -60,10 +60,10 @@ def main():
         mydb = myclient[config_data['Config']['DATABASE_NAME']]
         mycol = mydb["nuclei_results"]
         rawdata = sys.stdin.read()
-        with re.compile(r'\x1b[^m]*m') as regexmatch:
-            results = regexmatch.sub('', rawdata)
-            new = (results.translate(results.maketrans({'[': '', ']': ''})))
-            for data in new.splitlines():
+        regexmatch = re.compile(r'\x1b[^m]*m')
+        results = regexmatch.sub('', rawdata)
+        new = (results.translate(results.maketrans({'[': '', ']': ''})))
+        for data in new.splitlines():
                 arr = data.split()
                 date, time, vulnerability, scope, severity, endpoint = " ".join(arr[:6]).split()
                 data = {"date": "{}".format(date), "time": "{}".format(time), "vulnerability": "{}".format(vulnerability),
