@@ -53,8 +53,8 @@ def main():
         config_data.get('Config', {})['DATABASE_NAME'] = input('Enter Database Name: ')
         write_config_file(config_data)
     elif args.webserver:
-        webapp_path = os.path.abspath("/Users/smaranchand/Documents/Projects/nucci/webapp/webapp.py")
-        process = subprocess.run(["python3", webapp_path])
+        webapp_path = os.path.join(os.getcwd(), 'webapp/webapp.py')
+        subprocess.run(["python3", webapp_path])
     elif select.select([sys.stdin, ], [], [], 0.0)[0]:
         config_data = read_config_file()
         myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
