@@ -4,6 +4,7 @@ import os
 import re
 import select
 import sys
+import subprocess
 import pymongo
 import yaml
 
@@ -52,8 +53,8 @@ def main():
         config_data.get('Config', {})['DATABASE_NAME'] = input('Enter Database Name: ')
         write_config_file(config_data)
     elif args.webserver:
-        with os.system("cd webapp && python3 webapp.py") as f:
-            pass
+        webapp_path = os.path.abspath("/Users/smaranchand/Documents/Projects/nucci/webapp/webapp.py")
+        process = subprocess.run(["python3", webapp_path])
     elif select.select([sys.stdin, ], [], [], 0.0)[0]:
         config_data = read_config_file()
         myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
@@ -66,8 +67,7 @@ def main():
         for data in new.splitlines():
                 arr = data.split()
                 date, time, vulnerability, scope, severity, endpoint = " ".join(arr[:6]).split()
-                data = {"date": "{}".format(date), "time": "{}".format(time), "vulnerability": "{}".format(vulnerability),
-                        "scope": "{}".format(scope), "severity": "{}".format(severity), "endpoint": "{}".format(endpoint)}
+                data = {"date": "{}".format(date), "time": "{}".format(time), "vulnerability": "{}".format(vulnerability),"scope": "{}".format(scope), "severity": "{}".format(severity), "endpoint": "{}".format(endpoint)}
                 x = mycol.insert_one(data)
                 print("[+] Results migrated to database.[+]")
     else:
