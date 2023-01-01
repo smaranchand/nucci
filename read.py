@@ -56,7 +56,7 @@ def main():
         script_path = os.path.abspath(os.path.dirname(__file__))
         fullpath=os.path.join(script_path, 'webapp/webapp.py')
         process = subprocess.run(["python3", fullpath])
-    elif select.select([sys.stdin, ], [], [], 0.0)[0]:
+    elif select.select([sys.stdin, ], [], [], None)[0]:
         config_data = read_config_file()
         myclient = pymongo.MongoClient(config_data['Config']['MONGO_URI'])
         mydb = myclient[config_data['Config']['DATABASE_NAME']]
