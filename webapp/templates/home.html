@@ -70,9 +70,11 @@
                             <td> <div class="badge-outline col-red">{{ vulndetails.severity|capitalize }}</div></td>
                           {% elif vulndetails.severity == 'medium' %}
                               <td><div class="badge-outline col-orange">{{ vulndetails.severity|capitalize }}</div></td>
-                           {% elif vulndetails.severity == 'low' %}
+                          {% elif vulndetails.severity == 'low' %}
                               <td><div class="badge-outline col-green">{{ vulndetails.severity|capitalize }}</div></td>
-                              {% endif %}
+                          {% elif vulndetails.severity == 'info' %}
+                              <td><div class="badge-outline col-purple">{{ vulndetails.severity|capitalize }}</div></td>
+                          {% endif %}
                             <td>{{ vulndetails.endpoint }}</td>
                             <td>{{ vulndetails.scope }}</td>
                             <td>{{ vulndetails.vulnerability|capitalize }}</td>
