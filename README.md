@@ -48,3 +48,6 @@ if alias not set <br>
 
 [Project discovery's Nuclei](https://github.com/projectdiscovery/nuclei)<br>
 Yunish Shrestha
+Kailash Bohara
+Ankit Pandey
+Rohitash Kumar
