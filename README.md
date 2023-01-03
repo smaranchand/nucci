@@ -47,7 +47,7 @@ if alias not set <br>
 ### Specaial Thanks and Shoutouts:
 
 [Project discovery's Nuclei](https://github.com/projectdiscovery/nuclei)<br>
-Yunish Shrestha
-Kailash Bohara
-Ankit Pandey
+Yunish Shrestha<br>
+Kailash Bohara<br>
+Ankit Pandey<br>
 Rohitash Kumar
