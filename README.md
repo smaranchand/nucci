@@ -1,22 +1,20 @@
 ![Nucci](https://github.com/smaranchand/nucci/raw/main/src/nucci.gif)
 
-#RIP Internet Hero Binit Ghimire.
+# RIP Internet Hero Binit Ghimire.
 
-Save your nuclei scan results to cloud.
 Nucci is nothing but tool that lets you save your Nuclei tools output to the cloud database. Mongo.com provides a free database cluster which are we using to save the Nuclei scan  results.
 
-Initially i had plan to create a GUI for Project discovery's nuclei tool but we tried to launch a very basic solution instead. The tool use stdout to read the output of the nuclei scan uses some regex to validate, sanitize and upload them to a mongo db instance. Later on the data can be fetched and browsed using a webapp developed using flask.
-
+The tool uses stdin to read the output of the nuclei scan, uses some regex to sanitize and upload them to a mongo db instance. Later on the data can be fetched and browsed using a webapp developed in flask.
 
 ## WHY?
 
-I created so you dont have to.
+I created it so you dont have to.
 
 ## Configuration & Setup
 
 ### Database Setup:
 
-A local database or cloud database can be used to store the nuclei results, [Mongodb.com](https://www.mongodb.com) provides a free database cluster which are we going to utilize.
+A local database or cloud database can be used to store the nuclei results, [Mongodb.com](https://www.mongodb.com) provides a free database cluster which we can utilize.
 
 1. Go to https://www.mongodb.com/cloud/atlas/register and complete the signup process.
 2. Choose Shared plan.![Free Plan](https://github.com/smaranchand/nucci/blob/main/src/free.png)
@@ -26,14 +24,14 @@ A local database or cloud database can be used to store the nuclei results, [Mon
 
 ### Alias Setup:
 
-Nucci can be simply used by calling the ```read.py``` file after appending pipe. For now an alias can be set in your ```.bashrc``` or ```.zshrc```
-
+Nucci can be simply used by calling the ```read.py``` file after pipe. You can alias can be set in your ```.bashrc``` or ```.zshrc```
+for now but we are planing to create a pip package for simplyfying.
 ```alias nucci="python /path/to/your/file/read.py"```
 
 ## Usage:
 ```console
-nucci -config run (Configure mongodb)
-nucci -web run (Run a flask webserver to visualize the results.)
+nucci --config (Configure mongodb)
+nucci --webserver (Run a flask webserver and see the results in dashboard.)
 
 ```
 ### Save results
@@ -42,7 +40,7 @@ if alias not set <br>
 ```cat live_urls.txt|nuclei -t ~/nuclei-templates|python3 path/to/your/file/nucci/read.py```
 
 ### View Results
- ```nucci -web run``` or ```python3 /nucci/webapp/webapp.py```
+ ```nucci --webserver ``` or ```python3 /nucci/webapp/webapp.py```
 
 ### Specaial Thanks and Shoutouts:
 
