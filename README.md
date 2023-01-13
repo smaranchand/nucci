@@ -5,6 +5,9 @@
 Nucci is nothing but tool that lets you save your Nuclei tools output to the cloud database. Mongo.com provides a free database cluster which are we using to save the Nuclei scan  results.
 
 The tool uses stdin to read the output of the nuclei scan, uses some regex to sanitize and upload them to a mongo db instance. Later on the data can be fetched and browsed using a webapp developed in flask.
+<br>
+![nucci](https://github.com/smaranchand/nucci/raw/main/src/nucci.png)<br>
+
 
 ## WHY?
 
@@ -44,6 +47,8 @@ nucci --config (Configure Mongodb)
 nucci --webserver (Run a flask webserver to access dashboard)
 ```
 ### Save results
+```subfinder -d example.com|httpx|nuclei -t ~/nuclei-templates|nucci```
+![cli](https://github.com/smaranchand/nucci/raw/main/src/cli.png)<br>
 ```cat sample_data.txt|nucci``` <br>
 ![cat](https://github.com/smaranchand/nucci/raw/main/src/cat.png)<br>
 if alias not set <br>
