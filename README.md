@@ -18,9 +18,9 @@ A local database or cloud database can be used to store the nuclei results, [Mon
 
 1. Go to https://www.mongodb.com/cloud/atlas/register and complete the signup process.
 2. Choose Shared plan.
-![Free Plan](https://github.com/smaranchand/nucci/blob/main/src/free.png)
+![Free Plan](https://github.com/smaranchand/nucci/blob/main/src/free.png)<br>
 3. Create database user.
-![Create Creds](https://github.com/smaranchand/nucci/blob/main/src/create_creds.png)
+![Create Creds](https://github.com/smaranchand/nucci/blob/main/src/create_creds.png)<br>
 4. Enable Internet access so that we can access it from public IP, You can strict access to database if you have static IP address.
 ![Enable Access](https://github.com/smaranchand/nucci/blob/main/src/network.png)
 5. Save the connection string to use in nucci.
