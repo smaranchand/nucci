@@ -25,22 +25,26 @@ A local database or cloud database can be used to store the nuclei results, [Mon
 ### Alias Setup:
 
 Nucci can be simply used by calling the ```read.py``` file after pipe. You can alias can be set in your ```.bashrc``` or ```.zshrc```
-for now but we are planing to create a pip package for simplyfying.
+for now. We are planing to create a pip package for simplyfying.
 ```alias nucci="python /path/to/your/file/read.py"```
 
 ## Usage:
-```console
-nucci --config (Configure mongodb)
-nucci --webserver (Run a flask webserver and see the results in dashboard.)
 
+![help](https://github.com/smaranchand/nucci/raw/main/src/help.png)<br>
+
+```console
+nucci --config (Configure Mongodb)
+nucci --webserver (Run a flask webserver to access dashboard)
 ```
 ### Save results
-```cat live_urls.txt|nuclei -t ~/nuclei-templates|nucci``` <br>
+```cat sample_data.txt|nucci``` <br>
+![cat](https://github.com/smaranchand/nucci/raw/main/src/cat.png)<br>
 if alias not set <br>
-```cat live_urls.txt|nuclei -t ~/nuclei-templates|python3 path/to/your/file/nucci/read.py```
+```cat sample_data.txt|python3 path/to/your/file/nucci/read.py```
 
 ### View Results
  ```nucci --webserver ``` or ```python3 /nucci/webapp/webapp.py```
+ ![dashboard](https://github.com/smaranchand/nucci/raw/main/src/dashboard.png)<br>
 
 ### Specaial Thanks and Shoutouts:
 
